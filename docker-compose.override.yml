@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  mysql:
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  limesurvey:
+    ports:
+      - "33000:80"
+    volumes:
+      - ./upload:/app/upload
