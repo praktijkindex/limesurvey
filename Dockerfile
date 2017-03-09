@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get -yq install newrelic-php5 newrelic-daemon
 
 RUN rm -rf /app
-COPY limesurvey.tar.bz2 /app
+ADD limesurvey.tar.bz2 /app
 RUN chown -R www-data:www-data /app
 RUN chown www-data:www-data /var/lib/php5
 
