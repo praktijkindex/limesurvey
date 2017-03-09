@@ -2,6 +2,8 @@ version: '2'
 
 services:
   mysql:
+    ports:
+      - "33001:3306"
     volumes:
       - /var/limesurvey/mysql:/var/lib/mysql
     env_file:
