@@ -13,6 +13,6 @@ services:
     ports:
       - "127.0.0.1:33000:80"
     volumes:
-      - /var/limesurvey/upload:/app/upload
+      - /var/limesurvey/upload:/var/www/html/upload
     env_file:
       - /var/limesurvey/limesurvey.env

@@ -14,6 +14,6 @@ RUN apt-get update && \
 
 RUN rm -rf /app
 ADD limesurvey.tar.bz2 /
-RUN mv /limesurvey /var/www/html/
+RUN cp -r /limesurvey/* /var/www/html/
 
 RUN service apache2 restart
