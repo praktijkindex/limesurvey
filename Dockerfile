@@ -15,8 +15,5 @@ RUN apt-get update && \
 RUN rm -rf /app
 ADD limesurvey.tar.bz2 /
 RUN mv /limesurvey /var/www/html/
-RUN chown -R www-data:www-data /var/www/html/
-
-COPY apache_default /etc/apache2/sites-available/000-default.conf
 
 RUN service apache2 restart
