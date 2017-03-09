@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
         libldb-dev \
         libldap2-dev \
         libc-client-dev \
-        libkrb5-dev
+        libkrb5-dev \
+        libmysqlclient-dev \
+        mysql-client
 
 RUN ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so && \
     ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so
