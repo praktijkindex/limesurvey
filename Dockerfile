@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 RUN rm -rf /app
 ADD limesurvey.tar.bz2 /
-RUN cp -r /limesurvey /app
+RUN mv /limesurvey /app
 RUN chown -R www-data:www-data /app
 RUN chown www-data:www-data /var/lib/php5
 
