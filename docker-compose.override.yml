@@ -3,10 +3,14 @@ version: '2'
 services:
   mysql:
     volumes:
-      - ./mysql:/var/lib/mysql
+      - /var/limesurvey/mysql:/var/lib/mysql
+    envfile:
+      - /var/limesurvey/mysql.env
 
   limesurvey:
     ports:
       - "33000:80"
     volumes:
-      - ./upload:/app/upload
+      - /var/limesurvey/upload:/app/upload
+    envfile:
+      - /var/limesurvey/limesurvey.env
