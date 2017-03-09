@@ -30,5 +30,4 @@ RUN chmod +x /start.sh
 
 VOLUME /app/upload
 
-EXPOSE 80
 CMD ["/start.sh"]
