@@ -12,8 +12,7 @@ services:
       - mysql
     volumes:
       - upload:/app/upload
-    image:
-      crramirez/limesurvey:latest
+    build: .
 
 volumes:
   mysql:
