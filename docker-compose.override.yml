@@ -4,7 +4,7 @@ services:
   mysql:
     volumes:
       - /var/limesurvey/mysql:/var/lib/mysql
-    envfile:
+    env_file:
       - /var/limesurvey/mysql.env
 
   limesurvey:
@@ -12,5 +12,5 @@ services:
       - "33000:80"
     volumes:
       - /var/limesurvey/upload:/app/upload
-    envfile:
+    env_file:
       - /var/limesurvey/limesurvey.env
