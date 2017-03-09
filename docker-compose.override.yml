@@ -11,7 +11,7 @@ services:
 
   limesurvey:
     ports:
-      - "33000:80"
+      - "127.0.0.1:33000:80"
     volumes:
       - /var/limesurvey/upload:/app/upload
     env_file:

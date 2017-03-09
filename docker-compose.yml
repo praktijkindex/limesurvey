@@ -6,17 +6,10 @@ services:
     volumes:
       - mysql:/var/lib/mysql
     restart: always
-    environment:
-        MYSQL_ROOT_PASSWORD: limesurvey
-        MYSQL_DATABASE: limesurvey
-        MYSQL_USER: limesurvey
-        MYSQL_PASSWORD: limesurvey  
 
   limesurvey:
     depends_on:
       - mysql
-    ports:
-      - "80:80"
     volumes:
       - upload:/app/upload
     image:
