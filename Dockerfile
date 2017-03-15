@@ -15,7 +15,8 @@ RUN apt-get update && \
       libc-client-dev \
       libkrb5-dev \
       libmysqlclient-dev \
-      mysql-client && \
+      mysql-client \
+      wget && \
     apt-get clean
 
 RUN ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so && \
@@ -27,16 +28,18 @@ RUN docker-php-source extract && \
     docker-php-ext-install -j$(nproc) gd ldap zip imap pdo_mysql && \
     docker-php-source delete
 
-RUN apt-get update && \
-    apt-get -yq install wget && \
-    wget -O - https://download.newrelic.com/548C16BF.gpg | apt-key add - && \
-    echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list
+RUN echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list &&\
+    wget -O - https://download.newrelic.com/548C16BF.gpg | apt-key add -
 
 RUN apt-get update && \
     apt-get -y install \
-      newrelic-php5 \
-      newrelic-daemon && \
+      newrelic-daemon \
+      newrelic-php5 && \
     apt-get clean
+
+RUN echo newrelic-php5 newrelic-php5/application-name string $NEW_RELIC_APP_NAME | debconf-set-selections
+RUN echo newrelic-php5 newrelic-php5/license-key string $NR_INSTALL_KEY | debconf-set-selections
+RUN newrelic-install install
 
 RUN rm -rf /app
 ADD limesurvey.tar.bz2 /
