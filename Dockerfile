@@ -4,17 +4,19 @@ ENV TERM xterm
 ENV DEBIAN_FRONTEND noninteractive
 ENV NR_INSTALL_SILENT 1
 
-RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmcrypt-dev \
-        libpng12-dev \
-        libldb-dev \
-        libldap2-dev \
-        libc-client-dev \
-        libkrb5-dev \
-        libmysqlclient-dev \
-        mysql-client
+RUN apt-get update && \
+    apt-get install -y \
+      libfreetype6-dev \
+      libjpeg62-turbo-dev \
+      libmcrypt-dev \
+      libpng12-dev \
+      libldb-dev \
+      libldap2-dev \
+      libc-client-dev \
+      libkrb5-dev \
+      libmysqlclient-dev \
+      mysql-client && \
+    apt-get clean
 
 RUN ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so && \
     ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so
@@ -31,7 +33,10 @@ RUN apt-get update && \
     echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list
 
 RUN apt-get update && \
-    apt-get -yq install newrelic-php5 newrelic-daemon
+    apt-get -y install \
+      newrelic-php5 \
+      newrelic-daemon && \
+    apt-get clean
 
 RUN rm -rf /app
 ADD limesurvey.tar.bz2 /
