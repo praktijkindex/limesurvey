@@ -1,13 +1,19 @@
 version: '2'
+
 services:
-  limesurvey:
-    ports:
-      - "80:80"
+  mysql:
+    image: mysql:latest
     volumes:
       - mysql:/var/lib/mysql
+    restart: always
+
+  limesurvey:
+    build: .
+    links:
+      - mysql
+    volumes:
       - upload:/app/upload
-    image:
-      crramirez/limesurvey:latest
+
 volumes:
   mysql:
   upload:
